@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HtmlPropertyHelperDemo.Models.Book>
+
+<form action="@Url.Action("Books","Home")" method="post">
+
+    @Html.ForCollection(x => x, Model,
+        @<div class="panel panel panel-default">
+
+             <div class="panel-body">
+
+                 <div class="form-group">
+                    @using (var property = item.BeginProperty(x => x.Title))
+                    {
+                         <label for="@property.ID" class="col-md-2 control-label" @property.ValidationAttributes>Title</label>
+                         <div class="col-md-10">
+                             <input type="text" class="form-control" id="@property.ID" name="@property.Name" value="@property.Value" @property.ValidationAttributes>
+                             @property.ValidationMessage
+                         </div>
+                    }
+                 </div>
+
+                 <div class="form-group">
+                    @using (var property = item.BeginProperty(x => x.Author))
+                    {
+                         <label for="@property.ID" class="col-md-2 control-label" @property.ValidationAttributes>Author</label>
+                         <div class="col-md-10">
+                             <input type="text" class="form-control" id="@property.ID" name="@property.Name" value="@property.Value" @property.ValidationAttributes>
+                             @property.ValidationMessage
+                         </div>
+                    }
+                 </div>
+
+                 <div class="form-group">
+                    @using (var property = item.BeginProperty(x => x.DatePublished))
+                    {
+                         <label for="@property.ID" class="col-md-2 control-label" @property.ValidationAttributes>Published</label>
+                         <div class="col-md-10">
+                             <input type="date" class="form-control" id="@property.ID" name="@property.Name" value="@property.Value" @property.ValidationAttributes>
+                             @property.ValidationMessage
+                         </div>
+                     }
+                 </div>
+
+             </div>
+
+        </div>
+)
+    <div>  
+        <input type="submit" value="Save" class="btn btn-primary">
+    </div>
+
+</form>

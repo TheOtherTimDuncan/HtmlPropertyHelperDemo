@@ -84,5 +84,4 @@ namespace HtmlPropertyHelperDemo
             return propertyAttribute;
         }
     }
-
 }
